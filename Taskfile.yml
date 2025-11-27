@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
+version: 3
+
+tasks:
+  migrate:up:
+    desc: migrate the database
+    cmd: |-
+      docker run -v ./migrations:/migrations --network host migrate/migrate \
+        -path=/migrations/ -database postgres://postgres:localdev@localhost:5432/postgres?sslmode=disable up
